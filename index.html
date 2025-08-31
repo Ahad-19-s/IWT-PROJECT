@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Urban Jungle Co. — Nature at Your Fingertips</title>
+  <title>TreeTy Co. — Nature at Your Fingertips</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -15,13 +15,15 @@
   <header class="header">
     <div class="container nav">
       <a href="#" class="brand">
-        <img src="/Images/logo.svg" alt="Urban Jungle Co." class="logo"/>
-      </a>
+  <img src="/Images/treety.jpg" alt="TreeTy Co." class="logo"/>
+  <span class="brand-name">TreeTy Co.</span>
+</a>
+
       <nav class="menu" id="menu">
         <a href="#home">Home</a>
         <a href="#shop">Shop</a>
         <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="#contact">Review</a>
 
       </nav>
       <div class="actions">
@@ -34,14 +36,19 @@
        alt="Facebook" 
        width="25" height="25">
 </a>
-<a href="instagram web page" target="_blank" rel="noopener noreferrer">
+<a href="https://www.instagram.com/#" target="_blank" rel="noopener noreferrer">
   <img src="/Images/OIP.webp" 
        alt="instagram" 
        width="16" height="16">
 </a>
-<a href="whatsapp web page" target="_blank" rel="noopener noreferrer">
-  <img src="/Images/whatapps.jpg" 
+<a href="https://web.whatsapp.com/" target="_blank" rel="noopener noreferrer">
+  <img src="/Images/whatsapp.jpeg" 
        alt="Whatsapp" 
+       width="16" height="16">
+</a>
+<a href="https://www.youtube.com/results?search_query=indoor+tree+selling+business" target="_blank" rel="noopener noreferrer">
+  <img src="/Images/youtube.webp" 
+       alt="YouTube" 
        width="16" height="16">
 </a>
 <a href="https://example.com" class="btn btn-right">
@@ -56,7 +63,7 @@
   <section id="home" class="hero">
     <div class="hero-bg" style="background-image:url('/Images/backgroud.jpg');"></div>
     <div class="container hero-inner">
-      <p class="eyebrow">WELCOME TO URBAN JUNGLE CO.</p>
+      <p class="eyebrow">WELCOME TO TREETY CO.</p>
       <h1>Discover the Beauty of Nature at Your Fingertips</h1>
       <p class="sub">Curated indoor plants, delivered with care. Make your space calm, green, and inspiring.</p>
       <a href="#shop" class="btn">Shop Now</a>
@@ -108,7 +115,7 @@ const prods = [
   {img:'Images/sansevieria.jpeg',title:'Starlight Succulent',price:'$18.00'},
   {img:'Images/silvier mist.jpeg',title:'Silver Mist',price:'$29.00'},
   {img:'Images/Golden-Glow.webp',title:'Golden Glow',price:'$24.00'},
-  {img:'Images/dessert-bloom.jpg',title:'Desert Bloom',price:'$32.00'},
+  {img:'Images/Desert Bloom 1.jpg',title:'Desert Bloom',price:'$32.00'},
   {img:'Images/Monstera Delight.webp',title:'Monstera Delight',price:'$44.00'},
   {img:'Images/Emerald Ficus.jpg',title:'Emerald Ficus',price:'$36.00'},
   {img:'Images/tinny terra.webp',title:'Tiny Terra',price:'$12.00'}
@@ -141,26 +148,25 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
   <!-- Flash Sale -->
-  <section class="flash">
-    <div class="container flash-inner">
-      <div class="flash-text">
-        <h3>Up to 50% Off On Select Items!</h3>
-        <p>Limited time offers on best‑selling plants. Don’t miss out.</p>
-        <a href="#shop" class="btn white">Shop Deals</a>
-      </div>
-      <div class="flash-img" style="background-image:url('assets/category1.jpg');"></div>
+<section class="flash">
+  <div class="container flash-inner">
+    <div class="flash-text">
+      <h3>Up to 50% Off On Select Items!</h3>
+      <p>Limited time offers on best‑selling plants. Don’t miss out.</p>
+      <a href="#shop" class="btn white">Shop Deals</a>
     </div>
-  </section>
-
+    <div class="flash-img" style="background-image:url('assets/category1.jpg');"></div>
+  </div>
+</section>
   <!-- Categories -->
   <section class="categories">
     <div class="container">
       <h2>Shop by Categories</h2>
       <div class="grid four">
-        <a class="cat" href="#"><img src="assets/category1.jpg" alt=""><span>Houseplants</span></a>
-        <a class="cat" href="#"><img src="assets/category2.jpg" alt=""><span>Succulents</span></a>
-        <a class="cat" href="#"><img src="assets/category3.jpg" alt=""><span>Outdoor Plants</span></a>
-        <a class="cat" href="#"><img src="assets/category4.jpg" alt=""><span>Accessories</span></a>
+        <a class="cat" href="#"><img src="/Images/house-plant.jpg" alt=""><span>Houseplants</span></a>
+        <a class="cat" href="#"><img src="/Images/succulents.jpg" alt=""><span>Succulents</span></a>
+        <a class="cat" href="#"><img src="/Images/outdoor-plant.jpg" alt=""><span>Outdoor Plants</span></a>
+        <a class="cat" href="#"><img src="/Images/dessert-bloom (1).jpg" alt=""><span>Accessories</span></a>
       </div>
     </div>
   </section>
@@ -170,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="container grid two">
       <div class="about-text">
         <h2>Your Premier Destination for Indoor Greenery</h2>
-        <p>We curate hardy, beautiful plants that thrive in real homes. From low‑light buddies to statement leaves, our collection is picked and packed with love.</p>
+        <p><b>We curate hardy, beautiful plants that thrive in real homes. From low‑light buddies to statement leaves, our collection is picked and packed with love.</b></p>
         <div class="stats">
           <div><span class="num">98%</span><span class="lbl">Satisfaction</span></div>
           <div><span class="num">103K</span><span class="lbl">Plants Sold</span></div>
@@ -218,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   <footer id="contact" class="footer">
     <div class="container foot">
-      <p>© <span id="year"></span> Urban Jungle Co. • All rights reserved.</p>
+      <p>© <span id="year"></span> TreeTy Co. • All rights reserved.</p>
     </div>
   </footer>
 

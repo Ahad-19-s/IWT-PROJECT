@@ -55,7 +55,9 @@ img{max-width:100%;display:block}
 .hi-icon{font-size:28px}
 
 .section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.link{color:var(--muted)}
+.link{  
+    color: #ffffff;
+}
 .products{padding:30px 0}
 .products.alt{padding-top:0}
 .product{background:var(--panel);border:1px solid rgba(255,255,255,0.06);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
@@ -67,11 +69,61 @@ img{max-width:100%;display:block}
 .add{width:100%;background:#e7f6ec;color:#0d3d1f;border:0;padding:10px 12px;border-radius:12px;font-weight:700;cursor:pointer}
 .add:hover{background:#d9f0e3}
 
-.flash{padding:26px 0}
-.flash-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:stretch}
-.flash-text{background:linear-gradient(135deg,#1a251f,#0e1a14);border:1px solid rgba(255,255,255,0.06);border-radius:18px;padding:26px}
-.flash-text h3{font-size:clamp(22px,2.4vw,32px);margin:0 0 6px}
-.flash-img{border-radius:18px;background-size:cover;background-position:center;min-height:260px;border:1px solid rgba(255,255,255,0.06)}
+.flash {
+  padding: 26px 0;
+  display: flex;
+  justify-content: center; /* horizontal center of container */
+}
+
+.flash-inner {
+  display: flex;
+  justify-content: center; /* text + image centered */
+  align-items: center;     /* vertical alignment */
+  gap: 22px;
+  max-width: 1120px;      /* container width */
+  width: 100%;
+  flex-wrap: wrap;         /* small screens auto wrap */
+}
+
+.flash-text {
+  background: linear-gradient(135deg,#1a251f,#0e1a14);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 18px;
+  padding: 26px;
+  flex: 1 1 300px; /* responsive grow/shrink */
+  color: #eef7f0;
+  min-width: 280px;
+}
+
+.flash-text h3 {
+  font-size: clamp(22px,2.4vw,32px);
+  margin-bottom: 6px;
+}
+
+.flash-text p {
+  margin-bottom: 12px;
+}
+
+.flash-img {
+  border-radius: 18px;
+  background-size: cover;
+  background-position: center;
+  min-height: 260px;
+  border: 1px solid rgba(255,255,255,0.06);
+  flex: 1 1 300px; /* responsive */
+  min-width: 280px;
+}
+
+/* Responsive */
+@media (max-width: 920px){
+  .flash-inner {
+    flex-direction: column; /* small screens stacked vertically */
+    text-align: center;
+  }
+  .flash-img, .flash-text {
+    width: 100%;
+  }
+}
 
 .categories{padding:30px 0}
 .cat{position:relative;overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.06)}
@@ -82,8 +134,13 @@ img{max-width:100%;display:block}
 .about-text h2{margin-top:0}
 .stats{display:flex;gap:16px;margin-top:14px}
 .stats .num{display:block;font-size:28px;font-weight:800}
-.stats .lbl{display:block;color:var(--muted);margin-top:2px}
-.about-img{border-radius:16px;overflow:hidden;border:1px solid rgba(119, 124, 175, 0.06)}
+.stats .lbl {
+  display: block;
+  color: #ffffff; 
+  margin-top: 2px;
+}
+
+.about-img{border-radius:16px;overflow:hidden;border:1px solid rgba(235, 235, 239, 0.811)}
 .about-img img {
   width: 100%;
   height: auto;       /* স্বাভাবিক proportion ধরে রাখবে */
@@ -121,7 +178,38 @@ img{max-width:100%;display:block}
   .stats{flex-direction:column}
 }
 .btn-right {
+  position: absolute;
+  right: 20px;       /* header এর right edge থেকে distance */
+  top: 50%;          /* vertical center */
+  transform: translateY(-50%);
+  
+  display: inline-block;
+  padding: 6px 12px; /* small size */
+  font-size: 14px;   /* small text */
+  border-radius: 8px; /* rectangular but slightly rounded */
+  background-color: var(--brand); /* primary color */
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-right:hover {
+  background-color: var(--brand-2); /* hover effect */
+}
+.brand {
   display: flex;
-  justify-content: flex-end; /* text ডানদিকে সরানো */
-  align-items: center;       /* vertical alignment ঠিক রাখা */
+  align-items: center; /* vertical alignment */
+  gap: 8px;            /* logo এবং name এর মধ্যে spacing */
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.brand .logo {
+  height: 36px;       /* logo size */
+  width: auto;
+  display: block;
 }
