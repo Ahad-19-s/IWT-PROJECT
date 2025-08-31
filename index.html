@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Urban Jungle Co. — Nature at Your Fingertips</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css" />
+
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header class="header">
+    <div class="container nav">
+      <a href="#" class="brand">
+        <img src="/Images/logo.svg" alt="Urban Jungle Co." class="logo"/>
+      </a>
+      <nav class="menu" id="menu">
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+
+      </nav>
+      <div class="actions">
+        <button class="icon-btn" id="menuToggle" aria-label="Toggle Menu">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+       
+         <a href="https://www.facebook.com/YourPageName" target="_blank" rel="noopener noreferrer">
+  <img src="/Images/facebook-logo-facebook-icon-transparent-free-png.webp" 
+       alt="Facebook" 
+       width="25" height="25">
+</a>
+<a href="instagram web page" target="_blank" rel="noopener noreferrer">
+  <img src="/Images/OIP.webp" 
+       alt="instagram" 
+       width="16" height="16">
+</a>
+<a href="whatsapp web page" target="_blank" rel="noopener noreferrer">
+  <img src="/Images/whatapps.jpg" 
+       alt="Whatsapp" 
+       width="16" height="16">
+</a>
+<a href="https://example.com" class="btn btn-right">
+  Cart
+</a>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero-bg" style="background-image:url('/Images/backgroud.jpg');"></div>
+    <div class="container hero-inner">
+      <p class="eyebrow">WELCOME TO URBAN JUNGLE CO.</p>
+      <h1>Discover the Beauty of Nature at Your Fingertips</h1>
+      <p class="sub">Curated indoor plants, delivered with care. Make your space calm, green, and inspiring.</p>
+      <a href="#shop" class="btn">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- Service Highlights -->
+  <section class="highlights">
+    <div class="container grid four">
+      <div class="card hi">
+        <div class="hi-icon">🔒</div>
+        <h3>Secure Payment</h3>
+        <p>Encrypted checkout and trusted gateways.</p>
+      </div>
+      <div class="card hi">
+        <div class="hi-icon">🚚</div>
+        <h3>Free Shipping</h3>
+        <p>Enjoy free shipping over selected orders.</p>
+      </div>
+      <div class="card hi">
+        <div class="hi-icon">🪴</div>
+        <h3>Delivered with Care</h3>
+        <p>Hand-packed and protected for safe arrival.</p>
+      </div>
+      <div class="card hi">
+        <div class="hi-icon">💬</div>
+        <h3>Excellent Service</h3>
+        <p>Friendly support whenever you need it.</p>
+      </div>
+    </div>
+  </section>
+
+<!-- Trending Products -->
+
+<section id="shop" class="products">
+  <div class="container">
+    <div class="section-head">
+      <h2>Trending Products</h2>
+      <a href="#" class="link">View All →</a>
+    </div>
+
+    <div class="grid four" id="trending-grid"></div>
+  </div>
+</section>
+
+<script>
+const prods = [
+  {img:'Images/bamboo.jpg',title:'Zen Bamboo Grove',price:'$39.00'},
+  {img:'Images/sansevieria.jpeg',title:'Starlight Succulent',price:'$18.00'},
+  {img:'Images/silvier mist.jpeg',title:'Silver Mist',price:'$29.00'},
+  {img:'Images/Golden-Glow.webp',title:'Golden Glow',price:'$24.00'},
+  {img:'Images/dessert-bloom.jpg',title:'Desert Bloom',price:'$32.00'},
+  {img:'Images/Monstera Delight.webp',title:'Monstera Delight',price:'$44.00'},
+  {img:'Images/Emerald Ficus.jpg',title:'Emerald Ficus',price:'$36.00'},
+  {img:'Images/tinny terra.webp',title:'Tiny Terra',price:'$12.00'}
+];
+
+document.addEventListener('DOMContentLoaded', () => {
+  const grid = document.getElementById('trending-grid');
+  
+  grid.innerHTML = ''; // এখানে পুরনো content remove হচ্ছে
+
+  prods.forEach(prod => {
+    const card = document.createElement('div');
+    card.classList.add('product');
+
+    card.innerHTML = `
+      <img src="${prod.img}" alt="${prod.title}" class="pimg">
+      <div class="pbody">
+        <h3 class="ptitle">${prod.title}</h3>
+        <p class="price">${prod.price}</p>
+        <div class="pactions">
+          <button class="add">Add to Cart</button>
+        </div>
+      </div>
+    `;
+
+    grid.appendChild(card);
+  });
+});
+
+</script>
+
+  <!-- Flash Sale -->
+  <section class="flash">
+    <div class="container flash-inner">
+      <div class="flash-text">
+        <h3>Up to 50% Off On Select Items!</h3>
+        <p>Limited time offers on best‑selling plants. Don’t miss out.</p>
+        <a href="#shop" class="btn white">Shop Deals</a>
+      </div>
+      <div class="flash-img" style="background-image:url('assets/category1.jpg');"></div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="categories">
+    <div class="container">
+      <h2>Shop by Categories</h2>
+      <div class="grid four">
+        <a class="cat" href="#"><img src="assets/category1.jpg" alt=""><span>Houseplants</span></a>
+        <a class="cat" href="#"><img src="assets/category2.jpg" alt=""><span>Succulents</span></a>
+        <a class="cat" href="#"><img src="assets/category3.jpg" alt=""><span>Outdoor Plants</span></a>
+        <a class="cat" href="#"><img src="assets/category4.jpg" alt=""><span>Accessories</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Stats -->
+  <section id="about" class="about">
+    <div class="container grid two">
+      <div class="about-text">
+        <h2>Your Premier Destination for Indoor Greenery</h2>
+        <p>We curate hardy, beautiful plants that thrive in real homes. From low‑light buddies to statement leaves, our collection is picked and packed with love.</p>
+        <div class="stats">
+          <div><span class="num">98%</span><span class="lbl">Satisfaction</span></div>
+          <div><span class="num">103K</span><span class="lbl">Plants Sold</span></div>
+          <div><span class="num">24/7</span><span class="lbl">Support</span></div>
+        </div>
+      </div>
+      <div class="about-img"><img src="/Images/destination.jpg" alt=""></div>
+    </div>
+  </section>
+
+  
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <h2>What Our Customers Say</h2>
+      <div class="carousel" id="carousel">
+        <div class="tcard">
+          <img src="/Images/shibay.jpg" alt="">
+          <p>“Beautiful, healthy plants. The packaging was perfect—no damage at all.”</p>
+          <h4>Shibay Yadav</h4>
+        </div>
+        <div class="tcard">
+          <img src="/Images/sifat.jpg" alt="">
+          <p>“Fast delivery and great support. My living room looks alive!”</p>
+          <h4>Sifat Khan</h4>
+        </div>
+        <div class="tcard">
+          <img src="/Images/tanvir.jpg" alt="">
+          <p>“They helped me choose low‑light plants. All thriving.”</p>
+          <h4>Tanvir Ali.</h4>
+        </div>
+      </div>
+      <div class="dots" id="dots"></div>
+    </div>
+  </section>
+
+  <!-- CTA + Footer -->
+  <section class="cta">
+    <div class="container cta-inner">
+      <h3>Ready to Find Your Perfect Plant?</h3>
+      <a href="#shop" class="btn">Browse the Shop</a>
+    </div>
+  </section>
+
+  <footer id="contact" class="footer">
+    <div class="container foot">
+      <p>© <span id="year"></span> Urban Jungle Co. • All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/index.js"></script>
+</body>
+</html>
