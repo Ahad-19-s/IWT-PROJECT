@@ -1,4 +1,3 @@
-
 // Mobile menu
 const menu = document.getElementById('menu');
 const menuToggle = document.getElementById('menuToggle');
@@ -8,18 +7,6 @@ if(menuToggle){
 
 // Year
 document.getElementById('year').textContent = new Date().getFullYear();
-
-// Render product cards in both sections
-const products = [
-  {img:'',title:'Zen Bamboo Grove',price:'$39.00'},
-  {img:'Images/sansevieria.jpeg.jpg',title:'Starlight Succulent',price:'$18.00'},
-  {img:'assets/product3.jpg',title:'Silver Mist',price:'$29.00'},
-  {img:'assets/product4.jpg',title:'Golden Glow',price:'$24.00'},
-  {img:'assets/product5.jpg',title:'Desert Bloom',price:'$32.00'},
-  {img:'assets/product6.jpg',title:'Monstera Delight',price:'$44.00'},
-  {img:'assets/product7.jpg',title:'Emerald Ficus',price:'$36.00'},
-  {img:'assets/product8.jpg',title:'Tiny Terra',price:'$12.00'}
-];
 
 function makeCard(p){
   const el = document.createElement('div');
