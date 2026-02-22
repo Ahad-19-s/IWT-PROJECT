@@ -11,7 +11,6 @@
 
 </head>
 <body>
-  <!-- Header / Navbar -->
   <header class="header">
     <div class="container nav">
       <a href="#" class="brand">
@@ -23,7 +22,7 @@
         <a href="#home">Home</a>
         <a href="#shop">Shop</a>
         <a href="#about">About</a>
-        <a href="#contact">Review</a>
+        <a href="#contact">Contact</a>
 
       </nav>
       <div class="actions">
@@ -46,14 +45,10 @@
        alt="Whatsapp" 
        width="16" height="16">
 </a>
-<a href="https://www.youtube.com/results?search_query=indoor+tree+selling+business" target="_blank" rel="noopener noreferrer">
-  <img src="/Images/youtube.webp" 
-       alt="YouTube" 
-       width="16" height="16">
-</a>
 <a href="https://example.com" class="btn btn-right">
   Cart
 </a>
+
 
       </div>
     </div>
@@ -118,13 +113,13 @@ const prods = [
   {img:'Images/Desert Bloom 1.jpg',title:'Desert Bloom',price:'$32.00'},
   {img:'Images/Monstera Delight.webp',title:'Monstera Delight',price:'$44.00'},
   {img:'Images/Emerald Ficus.jpg',title:'Emerald Ficus',price:'$36.00'},
-  {img:'Images/tinny terra.webp',title:'Tiny Terra',price:'$12.00'}
+  {img:'Images/uPVk6Nkpik9csKnBTCyy6h.jpg',title:'Tiny Terra',price:'$12.00'}
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
   const grid = document.getElementById('trending-grid');
   
-  grid.innerHTML = '';  
+  grid.innerHTML = ''; // এখানে পুরনো content remove হচ্ছে
 
   prods.forEach(prod => {
     const card = document.createElement('div');
@@ -148,16 +143,17 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
   <!-- Flash Sale -->
-<section class="flash">
-  <div class="container flash-inner">
-    <div class="flash-text">
-      <h3>Up to 50% Off On Select Items!</h3>
-      <p>Limited time offers on best‑selling plants. Don’t miss out.</p>
-      <a href="#shop" class="btn white">Shop Deals</a>
+  <section class="flash">
+    <div class="container flash-inner">
+      <div class="flash-text">
+        <h3>Up to 50% Off On Select Items!</h3>
+        <p>Limited time offers on best‑selling plants. Don’t miss out.</p>
+        <a href="#shop" class="btn white">Shop Deals</a>
+      </div>
+      <div class="flash-img" style="background-image:url('assets/category1.jpg');"></div>
     </div>
-    <div class="flash-img" style="background-image:url('assets/category1.jpg');"></div>
-  </div>
-</section>
+  </section>
+
   <!-- Categories -->
   <section class="categories">
     <div class="container">
@@ -178,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <h2>Your Premier Destination for Indoor Greenery</h2>
         <p><b>We curate hardy, beautiful plants that thrive in real homes. From low‑light buddies to statement leaves, our collection is picked and packed with love.</b></p>
         <div class="stats">
-          <div><span class="num">98%</span><span class="lbl">Satisfaction</span></div>
+          <div><span class="num">94%</span><span class="lbl">Satisfaction</span></div>
           <div><span class="num">103K</span><span class="lbl">Plants Sold</span></div>
           <div><span class="num">24/7</span><span class="lbl">Support</span></div>
         </div>
@@ -195,9 +191,9 @@ document.addEventListener('DOMContentLoaded', () => {
       <h2>What Our Customers Say</h2>
       <div class="carousel" id="carousel">
         <div class="tcard">
-          <img src="/Images/shibay.jpg" alt="">
+          <img src="/Images/rahim.jpg" alt="">
           <p>“Beautiful, healthy plants. The packaging was perfect—no damage at all.”</p>
-          <h4>Shibay Yadav</h4>
+          <h4>Rahim Ali.</h4>
         </div>
         <div class="tcard">
           <img src="/Images/sifat.jpg" alt="">
