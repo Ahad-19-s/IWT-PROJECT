@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart - TreeTy Co.</title>
+    <link rel="stylesheet" href="/frontend/style.css">
+    <style>
+        .cart-container { padding: 50px 0; color: #151d18; }
+        .cart-table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; }
+        .cart-table th, .cart-table td { padding: 15px; text-align: left; border-bottom: 1px solid #ddd; }
+        .total-section { margin-top: 20px; text-align: right; font-size: 24px; color: white; }
+        .checkout-btn { background: #27ae60; color: white; padding: 15px 30px; border: none; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container cart-container">
+        <h2 style="color: white;">Your Shopping Cart</h2>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                </tbody>
+        </table>
+        <div class="total-section">
+            <p>Total: <span id="total-price">$0</span></p>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+<script>
+    function displayCart() {
+        // LocalStorage থেকে সরাসরি ডাটা নেওয়া
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        const container = document.getElementById('cart-items');
+        const totalPriceEl = document.getElementById('total-price');
+        
+        if(!container) return;
+        container.innerHTML = '';
+        let total = 0;
+
+        if(cartItems.length === 0) {
+            container.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:20px;">Your cart is empty!</td></tr>';
+            if(totalPriceEl) totalPriceEl.innerText = '$0.00';
+            return;
+        }
+
+        cartItems.forEach((item, index) => {
+            // দাম থেকে $ সরিয়ে যোগ করা
+            const priceNum = parseFloat(item.price.replace('$', '')) || 0;
+            total += priceNum;
+
+            container.innerHTML += `
+                <tr>
+                    <td style="display:flex; align-items:center; gap:10px;">
+                        <img src="${item.img}" width="40" style="border-radius:5px;">
+                        ${item.title}
+                    </td>
+                    <td>${item.price}</td>
+                    <td><button onclick="removeItem(${index})" style="color:red; cursor:pointer; background:none; border:none;">Remove</button></td>
+                </tr>`;
+        });
+
+        if(totalPriceEl) totalPriceEl.innerText = '$' + total.toFixed(2);
+    }
+
+    window.checkout = function() {
+    // LocalStorage থেকে চেক করা ইউজার লগইন করা কি না
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+    if (isLoggedIn === 'true') {
+        // লগইন থাকলে সরাসরি পেমেন্ট পেজে যাবে
+        window.location.href = 'payment.html';
+    } else {
+        // লগইন না থাকলে সাইন-আপ/লগইন পেজে পাঠাবে
+        alert("Please login or sign up to complete your purchase!");
+        window.location.href = 'auth.html';
+    }
+}
+
+    window.removeItem = function(index) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        displayCart(); // পেজ আপডেট
+    };
+
+    // পেজ লোড হওয়া মাত্রই ডাটা দেখাবে
+    window.onload = displayCart;
+</script>
+</body>
+</html>

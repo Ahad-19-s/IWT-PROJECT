@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login / Signup - TreeTy Co.</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-container { max-width: 400px; margin: 100px auto; background: var(--panel); padding: 30px; border-radius: 15px; text-align: center; }
+        .input-group { margin-bottom: 15px; }
+        input { width: 100%; padding: 10px; border-radius: 5px; border: none; background: #2c3e50; color: white; }
+        input::placeholder { color: #a9c3b3; }
+        .toggle-link { cursor: pointer; color: var(--brand); margin-top: 15px; display: block; font-size: 14px; }
+        .btn { width: 100%; border: none; cursor: pointer; transition: 0.3s; }
+    </style>
+</head>
+<body>
+   <div class="auth-container">
+    <h2 id="title">Sign Up</h2>
+    
+    <form id="authForm" action="auth_action.php" method="POST">
+        <div class="input-group" id="nameField">
+            <input type="text" name="full_name" id="name" placeholder="Full Name">
+        </div>
+        
+        <div class="input-group">
+            <input type="email" name="email" id="email" placeholder="Email Address" required>
+        </div>
+        
+        <div class="input-group">
+            <input type="password" name="password" id="pass" placeholder="Password" required>
+        </div>
+
+        <input type="hidden" name="mode" id="modeInput" value="signup">
+        
+        <button type="submit" class="btn" id="submitBtn">Create Account</button>
+    </form>
+    
+    <span class="toggle-link" onclick="toggleMode()" id="toggleText">
+        Already have an account? Login
+    </span>
+    
+    <br>
+    <a href="index.html" style="color: var(--muted); font-size: 12px; text-decoration: none;">← Back to Home</a>
+</div>
+    <script>
+        let isSignUpMode = true;
+
+        // মোড পরিবর্তন করার ফাংশন (Login <-> Signup)
+        function toggleMode() {
+            isSignUpMode = !isSignUpMode;
+            const title = document.getElementById('title');
+            const nameField = document.getElementById('nameField');
+            const submitBtn = document.getElementById('submitBtn');
+            const toggleText = document.getElementById('toggleText');
+
+            if (isSignUpMode) {
+                title.innerText = 'Sign Up';
+                nameField.style.display = 'block';
+                submitBtn.innerText = 'Create Account';
+                toggleText.innerText = 'Already have an account? Login';
+            } else {
+                title.innerText = 'Login';
+                nameField.style.display = 'none';
+                submitBtn.innerText = 'Login Now';
+                toggleText.innerText = "Don't have an account? Sign Up";
+            }
+        }
+
+        function handleAuth() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('pass').value;
+
+            if (!email || !pass || (isSignUpMode && !name)) {
+                alert("Please fill all fields!");
+                return;
+            }
+
+            // LocalStorage থেকে আগের ইউজার ডাটা নেওয়া
+            let users = JSON.parse(localStorage.getItem('TREETY_USERS')) || [];
+
+            if (isSignUpMode) {
+                // ১. সাইন-আপ লজিক
+                const userExists = users.find(u => u.email === email);
+                if (userExists) {
+                    alert("User already exists! Please login.");
+                    return;
+                }
+
+                const newUser = { name, email, pass };
+                users.push(newUser);
+                localStorage.setItem('TREETY_USERS', JSON.stringify(users));
+                
+                // লগইন সাকসেস হিসেবে সেট করা
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('currentUser', JSON.stringify(newUser));
+                
+                alert("Registration Successful!");
+                window.location.href = 'payment.html';
+
+            } else {
+                // ২. লগইন লজিক
+                const user = users.find(u => u.email === email && u.pass === pass);
+                if (user) {
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    alert(`Welcome back, ${user.name}!`);
+                    window.location.href = 'payment.html';
+                } else {
+                    alert("Invalid Email or Password!");
+                }
+            }
+        }
+    </script>
+</body>
+</html>

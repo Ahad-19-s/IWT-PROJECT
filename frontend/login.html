@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TreeTy Authentication</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#27ae60,#2c3e50);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+.auth-box{
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    width:350px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+.auth-box h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+button{
+    width:100%;
+    padding:10px;
+    background:#27ae60;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+}
+button:hover{
+    background:#219150;
+}
+.switch{
+    text-align:center;
+    margin-top:10px;
+    cursor:pointer;
+    color:#27ae60;
+}
+.error{
+    color:red;
+    font-size:13px;
+    display:none;
+}
+.success{
+    color:green;
+    font-size:13px;
+    display:none;
+}
+</style>
+</head>
+<body>
+
+<div class="auth-box">
+
+<h2 id="form-title">Login</h2>
+
+<form id="auth-form" onsubmit="handleAuth(event)">
+    
+    <input type="text" id="username" placeholder="Username" required>
+    
+    <input type="password" id="password" placeholder="Password" required>
+    
+    <input type="password" id="confirm-password" placeholder="Confirm Password" style="display:none;">
+    
+    <p class="error" id="error-msg"></p>
+    <p class="success" id="success-msg"></p>
+
+    <button type="submit">Submit</button>
+</form>
+
+<p class="switch" onclick="toggleMode()">Don't have an account? Sign Up</p>
+
+</div>
+
+<script>
+
+let isSignup = false;
+
+function toggleMode(){
+    isSignup = !isSignup;
+
+    document.getElementById("form-title").innerText = isSignup ? "Sign Up" : "Login";
+    document.getElementById("confirm-password").style.display = isSignup ? "block" : "none";
+    document.querySelector(".switch").innerText = 
+        isSignup ? "Already have an account? Login" : "Don't have an account? Sign Up";
+
+    clearMessages();
+}
+
+function clearMessages(){
+    document.getElementById("error-msg").style.display="none";
+    document.getElementById("success-msg").style.display="none";
+}
+
+function handleAuth(event){
+    event.preventDefault();
+    clearMessages();
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirm-password").value;
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    if(isSignup){
+
+        if(password !== confirmPassword){
+            showError("Passwords do not match!");
+            return;
+        }
+
+        const userExists = users.find(user => user.username === username);
+        if(userExists){
+            showError("Username already exists!");
+            return;
+        }
+
+        users.push({username,password});
+        localStorage.setItem("users",JSON.stringify(users));
+
+        showSuccess("Account created successfully! Please login.");
+        toggleMode();
+
+    } else {
+
+        const validUser = users.find(user => user.username === username && user.password === password);
+
+        if(validUser){
+            localStorage.setItem("isLoggedIn","true");
+            localStorage.setItem("currentUser",username);
+            window.location.href="index.html";
+        } else {
+            showError("Invalid username or password!");
+        }
+    }
+}
+
+function showError(msg){
+    const error = document.getElementById("error-msg");
+    error.innerText = msg;
+    error.style.display="block";
+}
+
+function showSuccess(msg){
+    const success = document.getElementById("success-msg");
+    success.innerText = msg;
+    success.style.display="block";
+}
+
+</script>
+
+</body>
+</html>

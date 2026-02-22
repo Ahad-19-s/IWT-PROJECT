@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment - TreeTy Co.</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .pay-box { background: var(--panel); padding: 30px; border-radius: 15px; margin-top: 30px; text-align: center; color: white; }
+        
+        /* অর্ডার সামারি স্টাইল */
+        .summary-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: left;
+            border: 1px dashed var(--muted);
+        }
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .total-row {
+            border-top: 1px solid var(--brand);
+            margin-top: 10px;
+            padding-top: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            color: var(--brand);
+        }
+
+        .pay-option { 
+            display: block; background: #2c3e50; padding: 20px; margin: 10px 0; 
+            border-radius: 10px; cursor: pointer; border: 1px solid transparent; transition: 0.3s; 
+        }
+        .pay-option:hover { border-color: var(--brand); }
+        
+        #online-methods { 
+            display: none;
+            grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; 
+            padding: 15px; background: rgba(255,255,255,0.05); border-radius: 10px;
+        }
+        .sub-method { 
+            background: white; padding: 10px; border-radius: 8px; cursor: pointer; 
+            transition: transform 0.2s; color: black; font-weight: bold; font-size: 11px;
+        }
+        .sub-method:hover { transform: scale(1.05); }
+        .sub-method img { width: 100%; height: 30px; object-fit: contain; margin-bottom: 5px;}
+        
+        .show { display: grid !important; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pay-box">
+            <h2>Checkout Summary</h2>
+            
+            <div class="summary-card" id="summary-section">
+                <div id="items-list">
+                    </div>
+                <div class="total-row">
+                    <span>Total Amount:</span>
+                    <span id="grand-total">$0.00</span>
+                </div>
+            </div>
+
+            <h3 style="margin-bottom: 15px;">Select Payment Method</h3>
+            
+            <div class="pay-option" onclick="toggleOnlineMethods()">
+                <h3>Online Payment</h3>
+                <p>bKash, Nagad, Visa/Mastercard</p>
+                
+                <div id="online-methods">
+                    <div class="sub-method" onclick="finishOrder('bKash')">
+                        <img src="https://www.logo.wine/a/logo/BKash/BKash-Logo.wine.svg" alt="bKash">
+                        bKash
+                    </div>
+                    <div class="sub-method" onclick="finishOrder('Nagad')">
+                        <img src="https://download.logo.wine/logo/Nagad/Nagad-Logo.wine.png" alt="Nagad">
+                        Nagad
+                    </div>
+                    <div class="sub-method" onclick="finishOrder('Visa Card')">
+                        <img src="https://www.logo.wine/a/logo/Visa_Inc./Visa_Inc.-Logo.wine.svg" alt="Visa">
+                        Visa
+                    </div>
+                </div>
+            </div>
+
+            <div class="pay-option" onclick="finishOrder('Cash on Delivery')">
+                <h3>Cash to Hand (COD)</h3>
+                <p>Pay when you receive your tree</p>
+            </div>
+
+            <a href="cart.html" style="color: var(--muted); display: block; margin-top: 20px; text-decoration: none;">← Back to Cart</a>
+        </div>
+    </div>
+
+    <script>
+        // পেজ লোড হওয়ার সময় সামারি দেখাবে
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const itemsList = document.getElementById('items-list');
+            const grandTotal = document.getElementById('grand-total');
+            
+            let total = 0;
+            
+            if (cart.length === 0) {
+                itemsList.innerHTML = "<p>No items in cart.</p>";
+            } else {
+                cart.forEach(item => {
+                    const price = parseFloat(item.price.replace('$', '')) || 0;
+                    total += price;
+                    
+                    itemsList.innerHTML += `
+                        <div class="summary-item">
+                            <span>${item.title}</span>
+                            <span>${item.price}</span>
+                        </div>
+                    `;
+                });
+            }
+            
+            grandTotal.innerText = `$${total.toFixed(2)}`;
+        });
+
+        function toggleOnlineMethods() {
+            const methods = document.getElementById('online-methods');
+            methods.classList.toggle('show');
+            if(event) event.stopPropagation();
+        }
+
+        function finishOrder(method) {
+            if(event) event.stopPropagation();
+
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if(cart.length === 0) {
+                alert("Your cart is empty!");
+                window.location.href = 'index.html';
+                return;
+            }
+
+            const user = JSON.parse(localStorage.getItem('currentUser')) || { name: "Guest" };
+            
+            alert(`Congratulations ${user.name}!\nYour order has been placed successfully using ${method}.\nTotal Paid: ${document.getElementById('grand-total').innerText}`);
+            
+            localStorage.removeItem('cart'); 
+            window.location.href = 'index.html'; 
+        }
+    </script>
+</body>
+</html>
